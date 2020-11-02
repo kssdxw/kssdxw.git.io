@@ -5,16 +5,19 @@
   
 
   
-  <title>Ryan&#39;s Blog</title>
+  <title>docker安装kerberos方案 | Ryan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="TEST">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ryan&#39;s Blog">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="kerberos安装与应用方案docker安装KDC打包docker镜像Dockerfile： 12345FROM centos:7RUN yum install -y krb5-server krb5-libs krb5-auth-dialog krb5-workstationCMD [&quot;&#x2F;usr&#x2F;sbin&#x2F;init&quot;] docker build： 1docker build">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker安装kerberos方案">
+<meta property="og:url" content="http://example.com/2020/10/30/kerberos/index.html">
 <meta property="og:site_name" content="Ryan&#39;s Blog">
-<meta property="og:description" content="TEST">
+<meta property="og:description" content="kerberos安装与应用方案docker安装KDC打包docker镜像Dockerfile： 12345FROM centos:7RUN yum install -y krb5-server krb5-libs krb5-auth-dialog krb5-workstationCMD [&quot;&#x2F;usr&#x2F;sbin&#x2F;init&quot;] docker build： 1docker build">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-30T07:34:14.000Z">
+<meta property="article:modified_time" content="2020-10-30T07:57:22.238Z">
 <meta property="article:author" content="Ryan">
+<meta property="article:tag" content="kerberos 安全 权限">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Ryan&#39;s Blog" type="application/atom+xml">
@@ -64,200 +67,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-数据中台概念篇——数据服务中心" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1%E4%B8%AD%E5%BF%83/" class="article-date">
-  <time datetime="2020-11-02T07:50:39.000Z" itemprop="datePublished">2020-11-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1%E4%B8%AD%E5%BF%83/">数据中台概念篇——数据服务中心</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1%E4%B8%AD%E5%BF%83/" data-id="ckh0a8y0b0005uwvxa1ge2bc6" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-数据中台概念篇——数据质量中心" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E8%B4%A8%E9%87%8F%E4%B8%AD%E5%BF%83/" class="article-date">
-  <time datetime="2020-11-02T07:50:32.000Z" itemprop="datePublished">2020-11-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E8%B4%A8%E9%87%8F%E4%B8%AD%E5%BF%83/">数据中台概念篇——数据质量中心</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E8%B4%A8%E9%87%8F%E4%B8%AD%E5%BF%83/" data-id="ckh0a8y0e0008uwvx88hx67sv" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-数据中台概念篇——存储优化中心" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E5%AD%98%E5%82%A8%E4%BC%98%E5%8C%96%E4%B8%AD%E5%BF%83/" class="article-date">
-  <time datetime="2020-11-02T07:49:35.000Z" itemprop="datePublished">2020-11-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E5%AD%98%E5%82%A8%E4%BC%98%E5%8C%96%E4%B8%AD%E5%BF%83/">数据中台概念篇——存储优化中心</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="数据存储优化中心搭建方案"><a href="#数据存储优化中心搭建方案" class="headerlink" title="数据存储优化中心搭建方案"></a>数据存储优化中心搭建方案</h1><p>数据存储一直是大数据系统的重中之重，根据预期数据的不同会有多种的选择方式，常见的问题会有：</p>
-<ul>
-<li>没有统一的规范标准管理，造成了重复计算的资源浪费</li>
-<li>数据的层次和粒度不清晰，使得重复存储严重</li>
-<li>性能不够，无法快速相应多维度查询</li>
-<li>成本过高，方案无法执行下去  </li>
-</ul>
-<p>这些问题究其根本还是存储的成本和性能平衡，开发和运维平衡，我会大概阐述一下我的设计方案。</p>
-<h2 id="一、数据存储预分层设计"><a href="#一、数据存储预分层设计" class="headerlink" title="一、数据存储预分层设计"></a>一、数据存储预分层设计</h2><p><img src="/images/database.jpg" alt="分层图" title="存储预分层"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E5%AD%98%E5%82%A8%E4%BC%98%E5%8C%96%E4%B8%AD%E5%BF%83/" data-id="ckh0a8y050001uwvx3ga44pil" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%98%E5%82%A8-%E6%88%90%E6%9C%AC-%E8%AE%A1%E7%AE%97-%E5%88%86%E5%B1%82/" rel="tag">存储 成本 计算 分层</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-数据中台概念篇——数据指标中心" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%8C%87%E6%A0%87%E4%B8%AD%E5%BF%83/" class="article-date">
-  <time datetime="2020-11-02T07:49:28.000Z" itemprop="datePublished">2020-11-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%8C%87%E6%A0%87%E4%B8%AD%E5%BF%83/">数据中台概念篇——数据指标中心</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E6%8C%87%E6%A0%87%E4%B8%AD%E5%BF%83/" data-id="ckh0a8y0a0004uwvxebmv6pbr" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-数据中台概念篇——异构数据采集" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86/" class="article-date">
-  <time datetime="2020-11-02T07:48:57.000Z" itemprop="datePublished">2020-11-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86/">数据中台概念篇——异构数据采集</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86/" data-id="ckh0a8y090003uwvxbb9r69gt" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-kerberos" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-kerberos" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/30/kerberos/" class="article-date">
   <time datetime="2020-10-30T07:34:14.000Z" itemprop="datePublished">2020-10-30</time>
@@ -270,8 +80,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/30/kerberos/">docker安装kerberos方案</a>
+    <h1 class="article-title" itemprop="name">
+      docker安装kerberos方案
     </h1>
   
 
@@ -300,60 +110,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/30/hello-world/" class="article-date">
-  <time datetime="2020-10-30T03:07:21.804Z" itemprop="datePublished">2020-10-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2020/11/02/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%8F%B0%E6%A6%82%E5%BF%B5%E7%AF%87%E2%80%94%E2%80%94%E5%BC%82%E6%9E%84%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          数据中台概念篇——异构数据采集
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/30/hello-world/">Hello World</a>
-    </h1>
   
+    <a href="/2020/10/30/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/30/hello-world/" data-id="ckgvoya1m000063vx327iamzb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
