@@ -197,7 +197,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>开坑</p>
+
       
     </div>
     <footer class="article-footer">
@@ -233,7 +234,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>开坑</p>
+
       
     </div>
     <footer class="article-footer">
@@ -277,7 +279,11 @@
 <li>成本过高，方案无法执行下去  </li>
 </ul>
 <p>这些问题究其根本还是存储的成本和性能平衡，开发和运维平衡，我会大概阐述一下我的设计方案。</p>
-<h2 id="一、数据存储预分层设计"><a href="#一、数据存储预分层设计" class="headerlink" title="一、数据存储预分层设计"></a>一、数据存储预分层设计</h2><p><img src="/images/database.jpg" alt="分层图" title="存储预分层"></p>
+<h2 id="一、数据存储预分层设计"><a href="#一、数据存储预分层设计" class="headerlink" title="一、数据存储预分层设计"></a>一、数据存储预分层设计</h2><p><img src="/images/database.jpg" alt="分层图" title="存储预分层"><br>数据依此分为ODS,DWD,DWS,ADM四层。</p>
+<h5 id="ODS层"><a href="#ODS层" class="headerlink" title="ODS层"></a>ODS层</h5><p>从分布式消息队列中消费Binlog和Click-log，并对埋点数据进行清洗和业务库数据还原，并根据需要增量或全量同步到Hive，同时积累历史数据并保存。</p>
+<h5 id="DWD层"><a href="#DWD层" class="headerlink" title="DWD层"></a>DWD层</h5><p>对整体业务进行概念抽象及适当冗余，在保证数据一致的同时将同属性实体归纳整合到同一逻辑域，减少存储空间，响应业务系统的变化，避免更新异常。</p>
+<h5 id="DWS层"><a href="#DWS层" class="headerlink" title="DWS层"></a>DWS层</h5><p>采用维度建模方法，根据活动特点及事实场景，对代金券、现金券、促销等的事件进一步整合。经过对维度的预处理，在使用信息的时候，不但减少时间成本、提高数据的提取效率，又为用户在Ad-Hoc平台查询提供很好的支撑。</p>
+<h5 id="ADM层"><a href="#ADM层" class="headerlink" title="ADM层"></a>ADM层</h5><p>ADM层则是服务于应用业务级别，它的数据来源可以是DWS或DWD，对于订单这种公司各部门普遍参与的类型数据从DWS层提取聚合，对于部门个性化应用则可从DWD层提取。</p>
 
       
     </div>
@@ -316,7 +322,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>开坑</p>
+
       
     </div>
     <footer class="article-footer">
@@ -352,7 +359,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>开坑</p>
+
       
     </div>
     <footer class="article-footer">
