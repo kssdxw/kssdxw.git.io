@@ -88,8 +88,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>计算、存储和网络是云时代的三大基础服务，作为新一代基础架构的 Kubernetes 也不例外。而这三者之中，网络又是一个最难掌握和最容易出问题的服务；本文通过对Kubernetes网络流量模型进行简单梳理，希望对初学者能够提供一定思路。先看一下kubernetes 总体模型：</p>
-<p><img src="https://img1.sdnlab.com//wp-content/uploads/2020/07/06/k1.png"></p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>计算、存储和网络是云时代的三大基础服务，作为新一代基础架构的 Kubernetes 也不例外。而这三者之中，网络又是一个最难掌握和最容易出问题的服务；本文通过对Kubernetes网络流量模型进行简单梳理，希望对初学者能够提供一定思路。</p>
 <h4 id="容器网络中涉及的几个地址："><a href="#容器网络中涉及的几个地址：" class="headerlink" title="容器网络中涉及的几个地址："></a>容器网络中涉及的几个地址：</h4><p>Node Ip：物理机地址。<br>POD Ip：Kubernetes的最小部署单元是Pod，一个pod 可能包含一个或多个容器，简单来讲容器没有自己单独的地址，他们共享POD 的地址和端口区间。<br>ClusterIp：Service的Ip地址，外部网络无法ping通改地址，因为它是虚拟IP地址，没有网络设备为这个地址负责，内部实现是使用Iptables规则重新定向到其本地端口，再均衡到后端Pod；只有Kubernetes集群内部访问使用。<br>Public Ip ：Service对象在Cluster IP range池中分配到的IP只能在内部访问，适合作为一个应用程序内部的层次。如果这个Service作为前端服务，准备为集群外的客户提供业务，我们就需要给这个服务提供公共IP。</p>
 <h2 id="容器网络流量模型"><a href="#容器网络流量模型" class="headerlink" title="容器网络流量模型"></a>容器网络流量模型</h2><p>容器网络至少需要解决如下几种场景的通信：</p>
 <p>①POD内容器间通信<br>②同主机POD间 通信<br>③跨主机POD间 通信<br>④集群内Service Cluster Ip和外部访问</p>
