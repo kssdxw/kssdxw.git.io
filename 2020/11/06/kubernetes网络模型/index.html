@@ -29,15 +29,15 @@
 <meta property="og:image" content="https://img1.sdnlab.com//wp-content/uploads/2020/07/06/k13.PNG">
 <meta property="og:image" content="https://img1.sdnlab.com//wp-content/uploads/2020/07/06/k14.PNG">
 <meta property="og:image" content="https://img1.sdnlab.com//wp-content/uploads/2020/07/06/k15.PNG">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/a7/0e/a76f5b1130075b8b7a4c31e04ffbbf0e.png">
+<meta property="og:image" content="https://ata2-img.cn-hangzhou.oss-pub.aliyun-inc.com/b8f4da7a3c4a65c48d227481279073b8.png">
 <meta property="og:image" content="https://static001.infoq.cn/resource/image/43/df/43e371ee592ce23150091959343aa4df.png">
 <meta property="og:image" content="https://static001.infoq.cn/resource/image/c8/f8/c8b8936834d450d273c2b4d11f1f1ef8.png">
 <meta property="og:image" content="https://static001.infoq.cn/resource/image/99/52/99412b1688581f0444f334e7796b0052.png">
 <meta property="og:image" content="https://static001.infoq.cn/resource/image/07/d1/073754a577bae1489a633c004538d6d1.png">
 <meta property="og:image" content="https://static001.infoq.cn/resource/image/93/ba/936636bee23136bf16a6d1cdb47d98ba.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/1c/6e/1cc72487db0824d8bb74f87feb0d026e.png">
+<meta property="og:image" content="https://ata2-img.cn-hangzhou.oss-pub.aliyun-inc.com/b8f4da7a3c4a65c48d227481279073b8.png">
 <meta property="article:published_time" content="2020-11-06T09:33:32.000Z">
-<meta property="article:modified_time" content="2020-11-06T11:11:41.357Z">
+<meta property="article:modified_time" content="2020-11-09T07:08:25.047Z">
 <meta property="article:author" content="Ryan">
 <meta property="article:tag" content="kubernetes network">
 <meta name="twitter:card" content="summary">
@@ -154,7 +154,7 @@
 <p>通过netstat -ulnp命令可以看到此时flanneld进程监听在8285端口：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@10-10-88-192 ~]# netstat -ulnp | grep flanneld</span><br><span class="line">udp        0      0 172.16.130.140:8285     0.0.0.0:*                           2373&#x2F;flanneld</span><br><span class="line">[root@10-10-88-192 ~]#</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>容器跨节点通信实现流程：</p>
-<p>假设在节点A上有容器A（10.244.1.96），在节点B上有容器B（10.244.2.194），此时容器A向容器发送一个ICMP请求报文（ping），我们来逐步分析一下ICMP报文是如何从容器A到达容器B的。<br><img src="https://static001.infoq.cn/resource/image/a7/0e/a76f5b1130075b8b7a4c31e04ffbbf0e.png"></p>
+<p>假设在节点A上有容器A（10.244.1.96），在节点B上有容器B（10.244.2.194），此时容器A向容器发送一个ICMP请求报文（ping），我们来逐步分析一下ICMP报文是如何从容器A到达容器B的。<br><img src="https://ata2-img.cn-hangzhou.oss-pub.aliyun-inc.com/b8f4da7a3c4a65c48d227481279073b8.png"></p>
 <p>1、容器A当中发出ICMP请求报文，通过IP封装后形式为：10.244.1.96 -&gt; 10.244.2.194，此时通过容器A内的路由表匹配到应该将IP包发送到网关10.244.1.1（cni0网桥）。</p>
 <p>完整的帧格式为：</p>
 <p><img src="https://static001.infoq.cn/resource/image/43/df/43e371ee592ce23150091959343aa4df.png"><br>2、此时到达cni0的IP包目的地IP 10.244.2.194匹配到节点A上第一条路由规则（10.244.0.0），内核将RAW IP包发送给flannel0接口。<br>3、flannel0为tun设备，发送给flannel0接口的RAW IP包（无MAC信息）将被flanneld进程接收到，flanneld进程接收到RAW IP包后在原有的基础上进行UDP封包，UDP封包的形式为：172.16.130.140:src port -&gt; 172.16.130.164:8285。<br>这里有一个问题就是flanneld怎么知道10.244.2.194这个容器到底是在哪个节点上呢？<br>flanneld在启动时会将该节点的网络信息通过api-server保存到etcd当中，故在发送报文时可以通过查询etcd得到10.244.2.194这个容器的IP属于host B，且host B的IP为172.16.130.164。<br>RAW IP包示例：<br><img src="https://static001.infoq.cn/resource/image/c8/f8/c8b8936834d450d273c2b4d11f1f1ef8.png"><br>4、flanneld将封装好的UDP报文经eth1发出，从这里可以看出网络包在通过eth1发出前先是加上了UDP头（8个字节），再然后加上了IP头（20个字节）进行封装，这也是为什么flannel0的MTU要比eth1的MTU小28个字节的原因（防止封装后的以太网帧超过eth1的MTU而在经过eth1时被丢弃）。<br>此时完整的以太网帧格式为：<br><img src="https://static001.infoq.cn/resource/image/99/52/99412b1688581f0444f334e7796b0052.png"><br>5、网络包经节点A和节点B之间的网络连接到达host B。<br>6、host B收到UDP报文后经Linux内核通过UDP端口号8285将包交给正在监听的应用flanneld。<br>7、运行在host B当中的flanneld将UDP包解包后得到RAW IP包：10.244.1.96 -&gt; 10.244.2.194。<br>8、解封后的RAW IP包匹配到host B上的路由规则（10.244.2.0），内核将RAW IP包发送到cni0。<br>此时的完整的以太网帧格式为：<br><img src="https://static001.infoq.cn/resource/image/07/d1/073754a577bae1489a633c004538d6d1.png"><br>9、cni0将IP包转发给连接在cni0网桥上的container B，而flanneld在整个过程中主要主要负责两个工作：</p>
@@ -174,7 +174,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@10-10-88-192 ~]# bridge fdb show dev flannel.1</span><br><span class="line">42:7f:69:c7:cd:37 dst 172.16.130.164 self permanent</span><br><span class="line">7a:2c:d0:7f:48:3f dst 172.16.130.140 self permanent</span><br><span class="line">[root@10-10-88-192 ~]#</span><br></pre></td></tr></table></figure>
 <p>从UDP更改到VXLAN的过程不多赘述，修改后同样可以通过netstat -ulnp命令查看VXLAN监听的端口：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@10-10-88-192 ~]# netstat -ulnp | grep 8472</span><br><span class="line">udp        0      0 0.0.0.0:8472            0.0.0.0:*                           -</span><br><span class="line">[root@10-10-88-192 ~]#</span><br></pre></td></tr></table></figure>
-<p>但跟UDP模式下查看flanneld监听的端口的区别为，最后一栏显示的不是进程的ID和名称，而是一个破折号“-”，这说明UDP的8472端口不是由用户态的进程在监听的，也证实了VXLAN模块工作在内核态模式下。<br><img src="https://static001.infoq.cn/resource/image/1c/6e/1cc72487db0824d8bb74f87feb0d026e.png"><br>此时容器跨节点网络通信实现流程为：</p>
+<p>但跟UDP模式下查看flanneld监听的端口的区别为，最后一栏显示的不是进程的ID和名称，而是一个破折号“-”，这说明UDP的8472端口不是由用户态的进程在监听的，也证实了VXLAN模块工作在内核态模式下。<br><img src="https://ata2-img.cn-hangzhou.oss-pub.aliyun-inc.com/b8f4da7a3c4a65c48d227481279073b8.png"><br>此时容器跨节点网络通信实现流程为：</p>
 <ul>
 <li>同UDP Backend模式，容器A当中的IP包通过容器A内的路由表被发送到cni0</li>
 <li>到达cni0当中的IP包通过匹配host A当中的路由表发现通往10.244.2.194的IP包应该交给flannel.1接口</li>
